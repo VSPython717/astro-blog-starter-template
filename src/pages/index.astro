@@ -45,6 +45,64 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
 			</p>
 		</main>
+		<button class="gradient-toggle" type="button" aria-pressed="true">
+			Turn gradient off
+		</button>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	:global(body.gradient-enabled) {
+		background-image: linear-gradient(125deg, #f8fafc, #dbeafe, #fce7f3, #ede9fe);
+		background-size: 400% 400%;
+		animation: gradient-drift 28s ease infinite;
+	}
+
+	.gradient-toggle {
+		position: fixed;
+		right: 1.5rem;
+		bottom: 1.5rem;
+		z-index: 10;
+		padding: 0.65rem 1rem;
+		border: 1px solid #94a3b8;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.85);
+		color: #1e293b;
+		font: inherit;
+		cursor: pointer;
+		backdrop-filter: blur(8px);
+	}
+
+	.gradient-toggle:hover {
+		background: #fff;
+	}
+
+	@keyframes gradient-drift {
+		0%,
+		100% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		:global(body.gradient-enabled) {
+			animation: none;
+		}
+	}
+</style>
+
+<script>
+	const gradientToggle = document.querySelector<HTMLButtonElement>('.gradient-toggle');
+
+	gradientToggle?.addEventListener('click', () => {
+		const enabled = document.body.classList.toggle('gradient-enabled');
+		gradientToggle.setAttribute('aria-pressed', String(enabled));
+		gradientToggle.textContent = enabled ? 'Turn gradient off' : 'Turn gradient on';
+	});
+
+	document.body.classList.add('gradient-enabled');
+</script>
