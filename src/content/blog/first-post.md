@@ -1,8 +1,8 @@
 ---
 title: "First post"
 description: "Testing things"
-pubDate: "Nov 10th 2026"
+pubDate: "Jul 08 2022"
 heroImage: "/blog-placeholder-3.jpg"
 ---
 
-Idk what to write here lol
+Insert cool text here
